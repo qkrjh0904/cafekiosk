@@ -57,6 +57,5 @@ class CafeKioskTest {
 
         cafeKiosk.clear();
         assertThat(cafeKiosk.getBeverageList()).isEmpty();
-
     }
 }
