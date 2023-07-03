@@ -47,6 +47,12 @@ public class CafeKiosk {
         return totalPrice;
     }
 
+    public int calculateTotalPriceWithTdd() {
+        return beverageList.stream()
+                .mapToInt(Beverage::getPrice)
+                .sum();
+    }
+
     public Order createOrder(LocalDateTime now) {
         LocalTime currentTime = now.toLocalTime();
         if (currentTime.isAfter(SHOP_OPEN_TIME) && currentTime.isBefore(SHOP_CLOSE_TIME)) {
@@ -55,4 +61,5 @@ public class CafeKiosk {
 
         throw new IllegalArgumentException("주문 시간이 아닙니다.");
     }
+
 }
