@@ -3,6 +3,9 @@ package sample.cafekiosk.unit;
 import org.junit.jupiter.api.Test;
 import sample.cafekiosk.unit.beverage.Americano;
 import sample.cafekiosk.unit.beverage.Latte;
+import sample.cafekiosk.unit.order.Order;
+
+import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -73,6 +76,37 @@ class CafeKioskTest {
 
         cafeKiosk.clear();
         assertThat(cafeKiosk.getBeverageList()).isEmpty();
-
     }
+
+    @Test
+    void createOrderAtOpenTime() {
+        CafeKiosk cafeKiosk = new CafeKiosk();
+        Americano americano = new Americano();
+        cafeKiosk.add(americano);
+
+        // 시간을 인자로 받지 않으면 테스트 수행 시간에 따라 결과가 달라지는 테스트가 될 수 있다.
+        LocalDateTime now = LocalDateTime.of(2023, 7, 3, 10, 0, 0, 1);
+        Order order = cafeKiosk.createOrder(now);
+        assertThat(order.getBeverageList()).hasSize(1);
+        assertThat(order.getBeverageList().get(0).getName()).isEqualTo("아메리카노");
+    }
+
+    @Test
+    void createOrderAtClosedTime() {
+        CafeKiosk cafeKiosk = new CafeKiosk();
+        Americano americano = new Americano();
+        cafeKiosk.add(americano);
+
+        // 시간을 인자로 받지 않으면 테스트 수행 시간에 따라 결과가 달라지는 테스트가 될 수 있다.
+        LocalDateTime now1 = LocalDateTime.of(2023, 7, 3, 22, 0);
+        assertThatThrownBy(() -> cafeKiosk.createOrder(now1))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("주문 시간이 아닙니다.");
+
+        LocalDateTime now2 = LocalDateTime.of(2023, 7, 3, 10, 0);
+        assertThatThrownBy(() -> cafeKiosk.createOrder(now2))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("주문 시간이 아닙니다.");
+    }
+
 }
