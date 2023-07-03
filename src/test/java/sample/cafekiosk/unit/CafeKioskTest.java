@@ -81,16 +81,19 @@ class CafeKioskTest {
     }
 
     @Test
+    @DisplayName("주문 목록에 담긴 상품들의 총 금액을 계산할 수 있다.")
     void calculateTotalPriceWithTdd() {
+        // given
         CafeKiosk cafeKiosk = new CafeKiosk();
         Americano americano = new Americano();
         Latte latte = new Latte();
-
         cafeKiosk.add(americano);
         cafeKiosk.add(latte);
 
+        // when
         int totalPrice = cafeKiosk.calculateTotalPriceWithTdd();
 
+        // then
         assertThat(totalPrice).isEqualTo(8500);
     }
 
