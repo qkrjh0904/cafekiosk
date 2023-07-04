@@ -16,13 +16,13 @@ import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
 
-@Profile("local")
+@Profile("test")
 @Configuration
 @EnableJpaAuditing
 @EntityScan(basePackages = {"sample.cafekiosk.spring.domain"})
 @EnableJpaRepositories(basePackages = {"sample.cafekiosk.spring"})
 @RequiredArgsConstructor
-public class EntityManagerConfig {
+public class TestEntityManagerConfig {
 
     private static final String[] PACKAGE_TO_SCAN = {"sample.cafekiosk.spring"};
     private final DataSource dataSource;
@@ -30,7 +30,7 @@ public class EntityManagerConfig {
     @Bean(name = "entityManagerFactory")
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         Map<String, Object> properties = new HashMap<>();
-        properties.put(AvailableSettings.HBM2DDL_AUTO, "update");
+        properties.put(AvailableSettings.HBM2DDL_AUTO, "create");
         properties.put(AvailableSettings.PHYSICAL_NAMING_STRATEGY, "org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy");
         properties.put(AvailableSettings.DEFAULT_BATCH_FETCH_SIZE, 500);
         properties.put(AvailableSettings.DIALECT, MariaDBDialect.class);

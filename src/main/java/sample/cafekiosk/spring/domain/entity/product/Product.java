@@ -1,6 +1,7 @@
 package sample.cafekiosk.spring.domain.entity.product;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import sample.cafekiosk.spring.domain.entity.BaseTimeEntity;
@@ -34,4 +35,14 @@ public class Product extends BaseTimeEntity {
     private String name;
 
     private Integer price;
+
+    @Builder
+    private Product(String productNumber, ProductType productType, ProductSellingType productSellingType, String name,
+              Integer price) {
+        this.productNumber = productNumber;
+        this.productType = productType;
+        this.productSellingType = productSellingType;
+        this.name = name;
+        this.price = price;
+    }
 }
