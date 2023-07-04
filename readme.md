@@ -89,3 +89,18 @@ Given/When/Then
 - When : 시나리오 행동 진행
 - Then : 시나리오 진행에 대한 결과 명시, 검증
 ```
+
+#### Layered Architecture
+```text
+Layered Architecture 는 보통 Presentation Layer, Business Layer, Persistence Layer 로 구성된다.
+이런 형태가 테스트 하기 어렵게 느껴질 수 있다.
+
+여러 객체가 협력해서 하나의 동작을 한다거나, A 모듈과 B 모듈이 합쳐져 어떤 동작을 하는지에 대한 테스트가 필요하다.
+그래서 통합테스트가 필요하다.
+
+통합테스트
+- 여러 모듈이 협력하는 기능을 통합적으로 검증하는 테스트
+- 일반적으로 작은 범위의 단위 테스트만으로는 기능 전체의 신뢰성을 보장할 수 없다
+- 풍부한 단위 테스트 & 큰 기능 단위를 검증하는 통합 테스트
+```
+
