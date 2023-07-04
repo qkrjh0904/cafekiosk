@@ -104,3 +104,27 @@ Layered Architecture 는 보통 Presentation Layer, Business Layer, Persistence 
 - 풍부한 단위 테스트 & 큰 기능 단위를 검증하는 통합 테스트
 ```
 
+#### Spring & JPA
+```text
+Library vs Framework
+- 라이브러리는 내 코드가 주체가 되어 외부에서 끌어와 사용한다.
+- 프레임워크는 이미 갖춰진 환경이 있고, 그 프레임 안에 내 코드가 들어가 동작을 한다.
+
+Spring
+- IoC(Inversion of Control)
+- DI(Dependency Injection)
+- AOP(Aspect Oriented Programming)
+
+ORM
+- 객체지향 패러다임과 관계형 DB 패러다임의 불일치
+- 이전에는 개발자가 객체의 데이터를 한땀한땀 매핑하여 DB에 저장 및 조회
+- ORM을 사용함으로써 개발자는 단순 작업을 줄이고, 비즈니스 로직에만 집중
+
+JPA
+- Java 진영의 ORM 기술 표준
+- 인터페이스이고, 여러 구현체가 있지만 보통 Hibernate 를 많이 사용한다.
+- 반복적인 CRUD SQL 을 생성 및 실행해주고 여러 부가 기능들을 제공한다.
+- 편리하지만 쿼리를 직접 작성하지 않기 때문에 어떤 식으로 쿼리가 만들어지고 실행되는지 명확하게 알아야한다.
+- Spring 진영에서는 JPA 를 한번 더 추상화한 Spring Data JPA 제공
+- QueryDSL 과 조합하여 많이 사용한다.
+```
