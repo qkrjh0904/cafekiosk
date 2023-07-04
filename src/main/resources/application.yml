@@ -1,0 +1,59 @@
+spring:
+  profiles:
+    default: local
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+  datasource:
+    hikari:
+      jdbc-url: jdbc:mysql://localhost:4306/test
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: on
+      multiline: true
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+    defer-datasource-initialization: true
+  datasource:
+    hikari:
+      jdbc-url: jdbc:mysql://localhost:4306/test
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+  datasource:
+    hikari:
+      jdbc-url: jdbc:mysql://localhost:4306/test
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+  sql:
+    init:
+      mode: never
