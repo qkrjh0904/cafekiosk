@@ -1,10 +1,9 @@
-package sample.cafekiosk.spring.domain.entity.product;
+package sample.cafekiosk.spring.domain.entity;
 
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import sample.cafekiosk.spring.domain.entity.BaseTimeEntity;
 import sample.cafekiosk.spring.domain.enums.ProductSellingType;
 import sample.cafekiosk.spring.domain.enums.ProductType;
 

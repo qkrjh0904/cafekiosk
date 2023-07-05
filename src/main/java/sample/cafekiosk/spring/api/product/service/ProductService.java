@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import sample.cafekiosk.spring.api.product.model.ProductRs;
 import sample.cafekiosk.spring.api.product.repository.ProductRepository;
-import sample.cafekiosk.spring.domain.entity.product.Product;
+import sample.cafekiosk.spring.domain.entity.Product;
 import sample.cafekiosk.spring.domain.enums.ProductSellingType;
 
 import java.util.List;

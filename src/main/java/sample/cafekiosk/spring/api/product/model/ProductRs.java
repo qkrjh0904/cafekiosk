@@ -2,7 +2,7 @@ package sample.cafekiosk.spring.api.product.model;
 
 import lombok.Builder;
 import lombok.Getter;
-import sample.cafekiosk.spring.domain.entity.product.Product;
+import sample.cafekiosk.spring.domain.entity.Product;
 import sample.cafekiosk.spring.domain.enums.ProductSellingType;
 import sample.cafekiosk.spring.domain.enums.ProductType;
 
