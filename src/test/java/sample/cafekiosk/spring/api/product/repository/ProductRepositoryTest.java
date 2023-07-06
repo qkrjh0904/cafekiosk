@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.transaction.annotation.Transactional;
 import sample.cafekiosk.spring.domain.entity.Product;
 import sample.cafekiosk.spring.domain.enums.ProductSellingType;
 import sample.cafekiosk.spring.domain.enums.ProductType;
@@ -21,6 +22,7 @@ import static sample.cafekiosk.spring.domain.enums.ProductType.BAKERY;
 import static sample.cafekiosk.spring.domain.enums.ProductType.BOTTLE;
 import static sample.cafekiosk.spring.domain.enums.ProductType.HANDMADE;
 
+@Transactional
 @SpringBootTest
 @ActiveProfiles("test")
 class ProductRepositoryTest {
