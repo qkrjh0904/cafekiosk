@@ -57,9 +57,7 @@ class OrderServiceTest {
         Product product3 = createProduct("003", HANDMADE, SELLING, "아메리카노", 4000);
         productRepository.saveAll(List.of(product1, product2, product3));
 
-        OrderCreateRq rq = OrderCreateRq.builder()
-                .productNumberList(List.of("001", "002"))
-                .build();
+        OrderCreateRq rq = OrderCreateRq.of(List.of("001", "002"));
 
         LocalDateTime now = LocalDateTime.now();
 
@@ -88,9 +86,7 @@ class OrderServiceTest {
         Product product3 = createProduct("003", HANDMADE, SELLING, "아메리카노", 4000);
         productRepository.saveAll(List.of(product1, product2, product3));
 
-        OrderCreateRq rq = OrderCreateRq.builder()
-                .productNumberList(List.of("001", "001"))
-                .build();
+        OrderCreateRq rq = OrderCreateRq.of(List.of("001", "001"));
 
         LocalDateTime now = LocalDateTime.now();
 
