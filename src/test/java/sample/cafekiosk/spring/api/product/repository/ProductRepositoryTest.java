@@ -1,6 +1,5 @@
 package sample.cafekiosk.spring.api.product.repository;
 
-import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,6 +71,33 @@ class ProductRepositoryTest {
                 );
     }
 
+    @Test
+    @DisplayName("가장 마지막으로 저장한 상품의 상품 번호를 읽어온다.")
+    void findLastProductNumber() {
+        // given
+        Product product1 = createProduct("001", HANDMADE, SELLING, "아메리카노", 4000);
+        Product product2 = createProduct("002", BOTTLE, HOLD, "사과주스", 5000);
+        Product product3 = createProduct("003", BAKERY, STOP_SELLING, "치즈빵", 7000);
+        productRepository.saveAll(List.of(product1, product2, product3));
+
+        // when
+        String lastProductNumber = productRepository.findLastProductNumber();
+
+        // then
+        assertThat(lastProductNumber).isEqualTo("003");
+    }
+
+    @Test
+    @DisplayName("가장 마지막으로 저장한 상품의 상품 번호를 읽어올 때, 상품이 없는 경우에 null 을 반환한다.")
+    void findLastProductNumberWhenProductsIsEmpty() {
+        // given
+        // when
+        String lastProductNumber = productRepository.findLastProductNumber();
+
+        // then
+        assertThat(lastProductNumber).isEqualTo(null);
+    }
+
     private Product createProduct(String productNumber, ProductType productType, ProductSellingType productSellingType,
                                   String name, int price) {
         return Product.builder()
@@ -82,4 +108,5 @@ class ProductRepositoryTest {
                 .price(price)
                 .build();
     }
+
 }
