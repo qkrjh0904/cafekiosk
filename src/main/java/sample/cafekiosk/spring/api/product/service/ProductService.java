@@ -8,7 +8,6 @@ import sample.cafekiosk.spring.api.product.model.ProductRs;
 import sample.cafekiosk.spring.api.product.repository.ProductRepository;
 import sample.cafekiosk.spring.domain.entity.Product;
 import sample.cafekiosk.spring.domain.enums.ProductSellingType;
-import sample.cafekiosk.spring.domain.enums.ProductType;
 
 import java.util.List;
 import java.util.Objects;
