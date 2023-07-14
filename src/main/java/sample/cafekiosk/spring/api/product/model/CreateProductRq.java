@@ -5,17 +5,23 @@ import sample.cafekiosk.spring.domain.entity.Product;
 import sample.cafekiosk.spring.domain.enums.ProductSellingType;
 import sample.cafekiosk.spring.domain.enums.ProductType;
 
+import javax.validation.constraints.NotNull;
+
 @Getter
 public class CreateProductRq {
 
     private String productNumber;
 
+    @NotNull
     private ProductType productType;
 
+    @NotNull
     private ProductSellingType productSellingType;
 
+    @NotNull
     private String name;
 
+    @NotNull
     private Integer price;
 
     public static CreateProductRq of(ProductType productType, ProductSellingType productSellingType, String name, Integer price) {
