@@ -1,9 +1,11 @@
 package sample.cafekiosk.spring.api;
 
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 import static org.springframework.http.HttpStatus.OK;
 
+@Getter
 public class ApiResponse<T> {
 
     private int code;
@@ -18,11 +20,15 @@ public class ApiResponse<T> {
         this.data = data;
     }
 
+    public static <T> ApiResponse<T> of(HttpStatus status, String message, T data) {
+        return new ApiResponse<>(status, message, data);
+    }
+
     public static <T> ApiResponse<T> of(HttpStatus status, T data) {
-        return new ApiResponse<>(status, status.name(), data);
+        return of(status, status.name(), data);
     }
 
     public static <T> ApiResponse<T> ok(T data) {
-        return new ApiResponse<>(OK, OK.name(), data);
+        return of(OK, data);
     }
 }

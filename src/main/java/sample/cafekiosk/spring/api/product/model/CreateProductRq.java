@@ -5,23 +5,25 @@ import sample.cafekiosk.spring.domain.entity.Product;
 import sample.cafekiosk.spring.domain.enums.ProductSellingType;
 import sample.cafekiosk.spring.domain.enums.ProductType;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 @Getter
 public class CreateProductRq {
 
     private String productNumber;
 
-    @NotNull
+    @NotNull(message = "상품 타입은 필수입니다.")
     private ProductType productType;
 
-    @NotNull
+    @NotNull(message = "상품 판매상태는 필수입니다.")
     private ProductSellingType productSellingType;
 
-    @NotNull
+    @NotBlank(message = "상품 명은 필수입니다.")
     private String name;
 
-    @NotNull
+    @Positive(message = "상품 가격은 양수여야합니다.")
     private Integer price;
 
     public static CreateProductRq of(ProductType productType, ProductSellingType productSellingType, String name, Integer price) {
