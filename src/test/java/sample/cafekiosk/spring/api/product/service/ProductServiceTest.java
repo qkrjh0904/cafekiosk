@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import sample.cafekiosk.spring.api.product.model.CreateProductRq;
 import sample.cafekiosk.spring.api.product.model.ProductRs;
 import sample.cafekiosk.spring.api.product.repository.ProductRepository;
+import sample.cafekiosk.spring.api.product.service.rq.CreateProductServiceRq;
 import sample.cafekiosk.spring.domain.entity.Product;
 import sample.cafekiosk.spring.domain.enums.ProductSellingType;
 import sample.cafekiosk.spring.domain.enums.ProductType;
@@ -39,7 +40,7 @@ class ProductServiceTest {
         productRepository.save(product);
 
         // when
-        CreateProductRq rq = CreateProductRq.of(HANDMADE, SELLING, "카푸치노", 5000);
+        CreateProductServiceRq rq = CreateProductServiceRq.of(HANDMADE, SELLING, "카푸치노", 5000);
         ProductRs rs = productService.createProduct(rq);
 
         // then
@@ -60,7 +61,7 @@ class ProductServiceTest {
     @DisplayName("상품이 하나도 없는 경우 신규 상품을 등록하면 상품 번호는 001이다.")
     void createProductWhenProductsIsEmpty() {
         // given
-        CreateProductRq rq = CreateProductRq.of(HANDMADE, SELLING, "카푸치노", 5000);
+        CreateProductServiceRq rq = CreateProductServiceRq.of(HANDMADE, SELLING, "카푸치노", 5000);
 
         // when
         ProductRs rs = productService.createProduct(rq);

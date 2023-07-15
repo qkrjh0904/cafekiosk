@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import sample.cafekiosk.spring.api.product.model.CreateProductRq;
 import sample.cafekiosk.spring.api.product.model.ProductRs;
 import sample.cafekiosk.spring.api.product.repository.ProductRepository;
+import sample.cafekiosk.spring.api.product.service.rq.CreateProductServiceRq;
 import sample.cafekiosk.spring.domain.entity.Product;
 import sample.cafekiosk.spring.domain.enums.ProductSellingType;
 
@@ -28,7 +29,7 @@ public class ProductService {
                 .collect(Collectors.toList());
     }
 
-    public ProductRs createProduct(CreateProductRq rq) {
+    public ProductRs createProduct(CreateProductServiceRq rq) {
         // productNumber
         // 001 002 003 004
         // db 에서 마지막 저장된 Product의 상품 번호를 읽어서 +1

@@ -1,7 +1,7 @@
 package sample.cafekiosk.spring.api.product.model;
 
 import lombok.Getter;
-import sample.cafekiosk.spring.domain.entity.Product;
+import sample.cafekiosk.spring.api.product.service.rq.CreateProductServiceRq;
 import sample.cafekiosk.spring.domain.enums.ProductSellingType;
 import sample.cafekiosk.spring.domain.enums.ProductType;
 
@@ -35,13 +35,7 @@ public class CreateProductRq {
         return rq;
     }
 
-    public Product toEntity(String productNumber) {
-        return Product.builder()
-                .productNumber(productNumber)
-                .price(this.price)
-                .productType(this.productType)
-                .productSellingType(this.productSellingType)
-                .name(this.name)
-                .build();
+    public CreateProductServiceRq toServiceRq() {
+        return CreateProductServiceRq.of(productType, productSellingType, name, price);
     }
 }
