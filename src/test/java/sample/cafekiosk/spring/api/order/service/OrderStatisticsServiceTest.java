@@ -2,8 +2,10 @@ package sample.cafekiosk.spring.api.order.service;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 import sample.cafekiosk.spring.api.mail.repository.MailSendHistoryRepository;
 import sample.cafekiosk.spring.api.order.repository.OrderRepository;
@@ -14,12 +16,14 @@ import sample.cafekiosk.spring.domain.entity.Product;
 import sample.cafekiosk.spring.domain.enums.OrderStatus;
 import sample.cafekiosk.spring.domain.enums.ProductSellingType;
 import sample.cafekiosk.spring.domain.enums.ProductType;
+import sample.cafekiosk.spring.mail.MailSendClient;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 import static sample.cafekiosk.spring.domain.enums.ProductSellingType.SELLING;
 import static sample.cafekiosk.spring.domain.enums.ProductType.HANDMADE;
 
@@ -39,6 +43,9 @@ class OrderStatisticsServiceTest {
 
     @Autowired
     private MailSendHistoryRepository mailSendHistoryRepository;
+
+    @MockBean
+    private MailSendClient mailSendClient;
 
     @Test
     @DisplayName("결제 완료 주문들을 조회하여 매출 통계 메일을 전송한다.")
@@ -61,6 +68,9 @@ class OrderStatisticsServiceTest {
         order2.updateStatus(OrderStatus.PAYMENT_COMPLETED);
         order3.updateStatus(OrderStatus.PAYMENT_COMPLETED);
         orderRepository.saveAll(List.of(order1, order2, order3));
+
+        Mockito.when(mailSendClient.sendEmail(any(String.class), any(String.class), any(String.class), any(String.class)))
+                .thenReturn(true);
 
         // when
         boolean result = orderStatisticsService.sendOrderStatisticsMail(LocalDate.of(2023, 7, 17), "qkrjh0904@gmail.com");
