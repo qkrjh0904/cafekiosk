@@ -69,6 +69,7 @@ class OrderStatisticsServiceTest {
         order3.updateStatus(OrderStatus.PAYMENT_COMPLETED);
         orderRepository.saveAll(List.of(order1, order2, order3));
 
+        // stubbing
         Mockito.when(mailSendClient.sendEmail(any(String.class), any(String.class), any(String.class), any(String.class)))
                 .thenReturn(true);
 
