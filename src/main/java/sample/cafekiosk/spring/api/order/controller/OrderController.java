@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import sample.cafekiosk.spring.api.ApiResponse;
 import sample.cafekiosk.spring.api.order.model.CreateOrderRs;
 import sample.cafekiosk.spring.api.order.model.OrderCreateRq;
+import sample.cafekiosk.spring.api.order.service.OrderService;
 
 import java.time.LocalDateTime;
 
