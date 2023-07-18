@@ -94,5 +94,4 @@ class OrderStatisticsServiceTest {
                 .price(price)
                 .build();
     }
-
 }
