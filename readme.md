@@ -239,3 +239,9 @@ Test Double
 - Spy : Stub 이면서 호출된 내용을 기록하여 보여줄 수 있는 객체. 일부는 실제 객체처럼 동작시키고 일부만 Stubbing 할 수 있다.
 - Mock : 행위에 대한 기대를 명세하고, 그에 따라 동작하도록 만들어진 객체.
 ```
+
+### Classicist vs Mockist
+```text
+Mockist : 우리 기능테스트 다 했는데, 빠르게 Mocking 처리해서 테스트하자.
+Classicist : 어떻게 보장하는가. 실제 객체들로 테스트해야한다.
+```
