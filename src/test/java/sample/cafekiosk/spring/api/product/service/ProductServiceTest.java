@@ -1,5 +1,7 @@
 package sample.cafekiosk.spring.api.product.service;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,19 @@ class ProductServiceTest {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @BeforeAll
+    static void beforeAll() {
+        // before class
+    }
+
+    @BeforeEach
+    void setUp() {
+        // before method
+
+        // 각 테스트 입장에서 봤을 때 setUp 메서드를 몰라도 테스트 내용을 이해하는데 문제가 없는가?
+        // 수정해도 모든 테스트에 영향을 주지 않는가?
+    }
 
     @Test
     @DisplayName("신규 상품을 등록한다. 상품 번호는 가장 최근 상품의 상품 번호에서 1 증가한 값이다.")
