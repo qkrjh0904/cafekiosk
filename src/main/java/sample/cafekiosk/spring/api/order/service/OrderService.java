@@ -35,7 +35,7 @@ public class OrderService {
                 .collect(Collectors.toMap(Stock::getProductNumber, Function.identity()));
         for (Product product : productList) {
             if (stockMap.containsKey(product.getProductNumber())) {
-                stockMap.get(product.getProductNumber()).reduce();
+                stockMap.get(product.getProductNumber()).reduce(1);
             }
         }
 

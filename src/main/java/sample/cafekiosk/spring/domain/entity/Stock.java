@@ -29,7 +29,10 @@ public class Stock extends BaseTimeEntity {
         return stock;
     }
 
-    public void reduce() {
-        this.quantity -= 1;
+    public void reduce(int quantity) {
+        if (this.quantity <= 0) {
+            throw new IllegalArgumentException("차감할 재고 수량이 없습니다.");
+        }
+        this.quantity -= quantity;
     }
 }

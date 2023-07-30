@@ -8,6 +8,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import sample.cafekiosk.spring.api.product.model.CreateProductRq;
 import sample.cafekiosk.spring.api.product.model.ProductRs;
 import sample.cafekiosk.spring.api.product.service.ProductService;
@@ -23,9 +25,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static sample.cafekiosk.spring.domain.enums.ProductSellingType.SELLING;
 import static sample.cafekiosk.spring.domain.enums.ProductType.HANDMADE;
 
+
+// SpringBootTest는 전체 Bean을 다 띄우는데 컨트롤러 레이어만 띄워 테스트하기 위해 사용.
+// 컨트롤러와 관련된 빈만 띄움
+// controllers에 test 하고자 하는 컨트롤러를 넣어주면 됨
 @WebMvcTest(controllers = ProductController.class)
 class ProductControllerTest {
 
+    // 서비스 레이어 하위로 Mock 처리를 할 때 MockMvc 라는 테스트 프레임워크를 사용한다.
     @Autowired
     private MockMvc mockMvc;
 
@@ -42,10 +49,10 @@ class ProductControllerTest {
         CreateProductRq rq = CreateProductRq.of(HANDMADE, SELLING, "카푸치노", 5000);
 
         // when  // then
-        mockMvc.perform(
-                        post("/api/v1/products/new")
-                                .content(objectMapper.writeValueAsString(rq))
-                                .contentType(MediaType.APPLICATION_JSON)
+        // perfrom api 쏘는 수행
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/products/new")
+                        .content(objectMapper.writeValueAsString(rq))
+                        .contentType(MediaType.APPLICATION_JSON)
                 )
                 .andDo(print())
                 .andExpect(status().isOk());
