@@ -1,15 +1,17 @@
 package sample.cafekiosk.spring.api.order.service;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.ActiveProfiles;
+import sample.cafekiosk.spring.IntegrationTestSupport;
 import sample.cafekiosk.spring.api.mail.repository.MailSendHistoryRepository;
+import sample.cafekiosk.spring.api.order.repository.OrderProductRepository;
 import sample.cafekiosk.spring.api.order.repository.OrderRepository;
 import sample.cafekiosk.spring.api.product.repository.ProductRepository;
+import sample.cafekiosk.spring.api.stock.StockRepository;
 import sample.cafekiosk.spring.domain.entity.MailSendHistory;
 import sample.cafekiosk.spring.domain.entity.Order;
 import sample.cafekiosk.spring.domain.entity.Product;
@@ -28,9 +30,7 @@ import static sample.cafekiosk.spring.domain.enums.ProductSellingType.SELLING;
 import static sample.cafekiosk.spring.domain.enums.ProductType.HANDMADE;
 
 
-@SpringBootTest
-@ActiveProfiles("test")
-class OrderStatisticsServiceTest {
+class OrderStatisticsServiceTest extends IntegrationTestSupport {
 
     @Autowired
     private OrderStatisticsService orderStatisticsService;
@@ -44,8 +44,20 @@ class OrderStatisticsServiceTest {
     @Autowired
     private MailSendHistoryRepository mailSendHistoryRepository;
 
-    @MockBean
-    private MailSendClient mailSendClient;
+    @Autowired
+    private OrderProductRepository orderProductRepository;
+
+    @Autowired
+    private StockRepository stockRepository;
+
+    @AfterEach
+    void tearDown() {
+        mailSendHistoryRepository.deleteAllInBatch();
+        orderProductRepository.deleteAllInBatch();
+        productRepository.deleteAllInBatch();
+        orderRepository.deleteAllInBatch();
+        stockRepository.deleteAllInBatch();
+    }
 
     @Test
     @DisplayName("결제 완료 주문들을 조회하여 매출 통계 메일을 전송한다.")

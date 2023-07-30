@@ -3,9 +3,7 @@ package sample.cafekiosk.spring.domain.entity;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.transaction.annotation.Transactional;
+import sample.cafekiosk.spring.IntegrationTestSupport;
 
 import java.util.List;
 
@@ -13,10 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 
-@Transactional
-@SpringBootTest
-@ActiveProfiles("test")
-class StockTest {
+class StockTest extends IntegrationTestSupport {
 
     @TestFactory
     @DisplayName("재고 차감 시나리오")

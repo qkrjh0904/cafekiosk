@@ -1,6 +1,7 @@
 package sample.cafekiosk.spring.api.mail.service;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -32,6 +33,11 @@ class MailServiceTest {
 
     @InjectMocks
     private MailService mailService;
+
+    @AfterEach
+    void tearDown() {
+        mailSendHistoryRepository.deleteAllInBatch();
+    }
 
     @Test
     @DisplayName("메일 전송 테스트")

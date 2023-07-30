@@ -1,14 +1,12 @@
 package sample.cafekiosk.spring.api.product.service;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.transaction.annotation.Transactional;
-import sample.cafekiosk.spring.api.product.model.CreateProductRq;
+import sample.cafekiosk.spring.IntegrationTestSupport;
 import sample.cafekiosk.spring.api.product.model.ProductRs;
 import sample.cafekiosk.spring.api.product.repository.ProductRepository;
 import sample.cafekiosk.spring.api.product.service.rq.CreateProductServiceRq;
@@ -23,16 +21,18 @@ import static org.assertj.core.api.Assertions.tuple;
 import static sample.cafekiosk.spring.domain.enums.ProductSellingType.SELLING;
 import static sample.cafekiosk.spring.domain.enums.ProductType.HANDMADE;
 
-@Transactional
-@SpringBootTest
-@ActiveProfiles("test")
-class ProductServiceTest {
+class ProductServiceTest extends IntegrationTestSupport {
 
     @Autowired
     private ProductService productService;
 
     @Autowired
     private ProductRepository productRepository;
+
+    @AfterEach
+    void tearDown() {
+        productRepository.deleteAllInBatch();
+    }
 
     @BeforeAll
     static void beforeAll() {

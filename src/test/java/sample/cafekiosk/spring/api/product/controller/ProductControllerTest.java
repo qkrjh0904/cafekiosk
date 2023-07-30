@@ -4,12 +4,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import sample.cafekiosk.spring.ControllerTestSupport;
 import sample.cafekiosk.spring.api.product.model.CreateProductRq;
 import sample.cafekiosk.spring.api.product.model.ProductRs;
 import sample.cafekiosk.spring.api.product.service.ProductService;
@@ -29,18 +28,7 @@ import static sample.cafekiosk.spring.domain.enums.ProductType.HANDMADE;
 // SpringBootTest는 전체 Bean을 다 띄우는데 컨트롤러 레이어만 띄워 테스트하기 위해 사용.
 // 컨트롤러와 관련된 빈만 띄움
 // controllers에 test 하고자 하는 컨트롤러를 넣어주면 됨
-@WebMvcTest(controllers = ProductController.class)
-class ProductControllerTest {
-
-    // 서비스 레이어 하위로 Mock 처리를 할 때 MockMvc 라는 테스트 프레임워크를 사용한다.
-    @Autowired
-    private MockMvc mockMvc;
-
-    @Autowired
-    private ObjectMapper objectMapper;
-
-    @MockBean
-    private ProductService productService;
+class ProductControllerTest extends ControllerTestSupport {
 
     @Test
     @DisplayName("신규 상품을 등록한다.")

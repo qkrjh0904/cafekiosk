@@ -1,11 +1,10 @@
 package sample.cafekiosk.spring.api.product.repository;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.transaction.annotation.Transactional;
+import sample.cafekiosk.spring.IntegrationTestSupport;
 import sample.cafekiosk.spring.domain.entity.Product;
 import sample.cafekiosk.spring.domain.enums.ProductSellingType;
 import sample.cafekiosk.spring.domain.enums.ProductType;
@@ -21,13 +20,15 @@ import static sample.cafekiosk.spring.domain.enums.ProductType.BAKERY;
 import static sample.cafekiosk.spring.domain.enums.ProductType.BOTTLE;
 import static sample.cafekiosk.spring.domain.enums.ProductType.HANDMADE;
 
-@Transactional
-@SpringBootTest
-@ActiveProfiles("test")
-class ProductRepositoryTest {
+class ProductRepositoryTest extends IntegrationTestSupport {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @AfterEach
+    void tearDown() {
+        productRepository.deleteAllInBatch();
+    }
 
     @Test
     @DisplayName("원하는 판매 상태를 가진 상품들을 조회한다.")
