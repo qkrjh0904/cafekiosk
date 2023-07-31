@@ -80,7 +80,7 @@ class OrderServiceTest extends IntegrationTestSupport {
     }
 
     @Test
-    @DisplayName("중복되는 상품번호 리스트로 주문을 생성할 수 있따.")
+    @DisplayName("중복되는 상품번호 리스트로 주문을 생성할 수 있다.")
     void createOrderWithDuplicateProductNumbers() {
         // given
         Product product1 = createProduct("001", BAKERY, STOP_SELLING, "치즈빵", 3000);
