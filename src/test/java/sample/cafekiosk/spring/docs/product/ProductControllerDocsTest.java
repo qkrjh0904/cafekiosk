@@ -66,6 +66,7 @@ public class ProductControllerDocsTest extends RestDocsSupport {
                                 fieldWithPath("productType").type(JsonFieldType.STRING)
                                         .description("상품 타입"),
                                 fieldWithPath("productSellingType").type(JsonFieldType.STRING)
+                                        .optional()
                                         .description("상품 판매 상태"),
                                 fieldWithPath("name").type(JsonFieldType.STRING)
                                         .description("상품 명"),
