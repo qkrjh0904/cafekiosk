@@ -12,8 +12,6 @@ import javax.validation.constraints.Positive;
 @Getter
 public class CreateProductRq {
 
-    private String productNumber;
-
     @NotNull(message = "상품 타입은 필수입니다.")
     private ProductType productType;
 
